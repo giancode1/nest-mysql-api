@@ -1,5 +1,6 @@
 // eslint-disable-next-line prettier/prettier
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Post } from 'src/posts/post.entity';
 import { Profile } from './profile.entity';
 
 @Entity({ name: 'users' }) //si quieres declarar el nombre explicitmente
@@ -23,4 +24,7 @@ export class User {
   @OneToOne(() => Profile)
   @JoinColumn()
   profile: Profile;
+
+  @OneToMany(() => Post, (post) => post.author)
+  posts: Post[];
 }
