@@ -15,12 +15,14 @@ export class UsersController {
   }
 
   @Get(':id')
-  getUser(@Param('id', ParseIntPipe) id: number): Promise<User> {
+  getUser(@Param('id', ParseIntPipe) id: number) {
     return this.usersService.getUser(id);
   }
 
   @Post()
-  createUser(@Body() newUser: CreateUserDto): Promise<User> {
+  // createUser(@Body() newUser: CreateUserDto): Promise<User> {
+  //actualmente ya devulve una exepcion y no solo el usuario:
+  createUser(@Body() newUser: CreateUserDto) {
     return this.usersService.createUser(newUser);
   }
 
