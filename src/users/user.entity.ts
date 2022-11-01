@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+// eslint-disable-next-line prettier/prettier
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Profile } from './profile.entity';
 
 @Entity({ name: 'users' }) //si quieres declarar el nombre explicitmente
 // @Entity()
@@ -17,4 +19,8 @@ export class User {
 
   @Column({ nullable: true })
   authStategy: string;
+
+  @OneToOne(() => Profile)
+  @JoinColumn()
+  profile: Profile;
 }
